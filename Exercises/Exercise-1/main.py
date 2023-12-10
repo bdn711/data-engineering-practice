@@ -19,6 +19,24 @@ def main():
     downloads_dir = Path('downloads')
     downloads_dir.mkdir(exist_ok=True)
     
+    # change current working directory to the newly created downloads folder
+    os.chdir(str(downloads_dir))
+    
+    for uri in download_uris:
+
+        try:
+            # download files one by one
+            response = requests.get(uri)
+
+            # split out filename from the uri
+            zip_filename = uri.split('/')[-1]
+
+            # save downloaded file using filename
+            open(zip_filename, 'wb').write(response.content)
+
+        except:
+            pass
+
     pass
 
 
