@@ -42,6 +42,10 @@ def main():
             except:
                 pass
             
+            # delete the zip file
+            zip_file_path = Path.cwd() / zip_filename
+            zip_file_path.unlink(zip_filename)
+            
         except:
             pass
 
