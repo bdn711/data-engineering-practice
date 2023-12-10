@@ -33,7 +33,15 @@ def main():
 
             # save downloaded file using filename
             open(zip_filename, 'wb').write(response.content)
-
+            
+            try:
+                # extract csv from the zip file
+                with ZipFile(zip_filename, 'r') as zip_file:
+                    csv_filename = zip_filename.replace('.zip', '.csv')
+                    zip_file.extract(csv_filename)
+            except:
+                pass
+            
         except:
             pass
 
