@@ -1,1 +1,2 @@
-requests==2.27.1
+pandas==2.1.4
+flatten_json==0.1.14
