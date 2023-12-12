@@ -1,17 +1,6 @@
 import requests
-import pandas
-import subprocess
-import sys
-
-# additional code due to bs4 behaving unexpectedly when working with subprocess that interfered with docker
-def install_bs4():
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "bs4"])
-
-try:
-    from bs4 import BeautifulSoup
-except:
-    install_bs4()
-    from bs4 import BeautifulSoup
+import pandas as pd
+from bs4 import BeautifulSoup
 
 
 def main():
@@ -48,7 +37,7 @@ def main():
     open(filename, 'wb').write(response.content)
 
     # open file with pandas
-    df = pandas.read_csv(filename)
+    df = pd.read_csv(filename)
 
     # find the records with the highest HourlyDryBulbTemperature and print result
     print(df.loc[[df.HourlyDryBulbTemperature.max()]])
